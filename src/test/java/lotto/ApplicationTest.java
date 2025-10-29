@@ -14,7 +14,7 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 구입_금액_입력_안내_문구_출력_테스트() {
-        run();
+        run("8000", "1,2,3,4,5,6", "7");
         assertThat(output()).contains("구입금액을 입력해 주세요.");
     }
 
