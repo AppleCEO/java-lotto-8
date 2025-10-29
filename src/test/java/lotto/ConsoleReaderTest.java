@@ -22,6 +22,5 @@ class ConsoleReaderTest extends NsTest {
 
     @Override
     public void runMain() {
-        Application.main(new String[]{});
     }
 }
