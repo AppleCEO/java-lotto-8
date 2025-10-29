@@ -13,6 +13,18 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
+    void 구입_금액_입력_안내_문구_출력_테스트() {
+        run("8000", "1,2,3,4,5,6", "7");
+        assertThat(output()).contains("구입금액을 입력해 주세요.");
+    }
+
+    @Test
+    void 구입한_로또_갯수_출력_테스트() {
+        run("8000", "1,2,3,4,5,6", "7");
+        assertThat(output()).contains("8개를 구매했습니다.");
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
