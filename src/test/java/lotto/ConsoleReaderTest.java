@@ -24,9 +24,8 @@ class ConsoleReaderTest extends NsTest {
     void 로또_당첨번호_입력_테스트() {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,6", "7");
-            int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumber();
-            assertThat(lottoWinningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+            int lottoWinningNumbers = ConsoleReader.readLottoNumber();
+            assertThat(lottoWinningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6, 7));
         });
     }
 
