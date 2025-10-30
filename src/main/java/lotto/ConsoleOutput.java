@@ -8,4 +8,8 @@ public class ConsoleOutput {
     public static void printLottoAmount(int money) {
         System.out.println(money/1000 + "개를 구매했습니다.");
     }
+
+    public static void printWinningNumberInputGuide() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }
