@@ -16,7 +16,7 @@ public class ConsoleReader {
         return money;
     }
 
-    public static List<Integer> readWinningNumber() {
+    public static List<Integer> readWinningNumbers() {
         ConsoleOutput.printWinningNumberInputGuide();
         String input = Console.readLine();
         List<Integer> numbers = Arrays.stream(input.split(","))
