@@ -11,10 +11,13 @@ public class ConsoleReader {
     public static int readMoney() {
         ConsoleOutput.printMoneyInputGuide();
         String input = Console.readLine();
-        return Integer.parseInt(input);
+        int money = Integer.parseInt(input);
+        ConsoleOutput.printLottoAmount(money);
+        return money;
     }
 
     public static List<Integer> readWinningNumber() {
+        ConsoleOutput.printWinningNumberInputGuide();
         String input = Console.readLine();
         List<Integer> numbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
