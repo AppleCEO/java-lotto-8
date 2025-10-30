@@ -24,4 +24,10 @@ public class ConsoleReader {
                 .collect(Collectors.toList());
         return numbers;
     }
+
+    public static Integer readBonusNumber() {
+        ConsoleOutput.printBonusNumberInputGuide();
+        String input = Console.readLine();
+        return Integer.parseInt(input);
+    }
 }
