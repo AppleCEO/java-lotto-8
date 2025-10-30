@@ -30,6 +30,17 @@ class ConsoleReaderTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스_번호_입력_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7");
+            int money = ConsoleReader.readMoney();
+            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumber();
+            int bonusNumber = ConsoleReader.readBonusNumber();
+            assertThat(bonusNumber).isEqualTo(List.of(7));
+        });
+    }
+
     @Override
     public void runMain() {
     }
