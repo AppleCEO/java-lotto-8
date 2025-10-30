@@ -20,6 +20,15 @@ class ConsoleReaderTest extends NsTest {
         });
     }
 
+    @Test
+    void 로또_당첨번호_입력_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "7");
+            int lottoWinningNumbers = ConsoleReader.readLottoNumber();
+            assertThat(lottoWinningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6, 7));
+        });
+    }
+
     @Override
     public void runMain() {
     }
