@@ -25,6 +25,12 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 로또_번호_입력_안내_문구_출력_테스트() {
+        run("8000", "1,2,3,4,5,6", "7");
+        assertThat(output()).contains("당첨 번호를 입력해 주세요.");
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
