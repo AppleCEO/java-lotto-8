@@ -37,7 +37,7 @@ class ConsoleReaderTest extends NsTest {
             int money = ConsoleReader.readMoney();
             List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumber();
             int bonusNumber = ConsoleReader.readBonusNumber();
-            assertThat(bonusNumber).isEqualTo(List.of(7));
+            assertThat(bonusNumber).isEqualTo(7);
         });
     }
 
