@@ -5,8 +5,8 @@ public class ConsoleOutput {
         System.out.println(Message.PROMPT_BUY_MONEY.get());
     }
 
-    public static void printLottoAmount(int money) {
-        System.out.printf(Message.RESULT_BUY_LOTTO_AMOUNT.get(), money/1000);
+    public static void printLottoAmount(int amount) {
+        System.out.printf(Message.RESULT_BUY_LOTTO_AMOUNT.get(), amount);
     }
 
     public static void printWinningNumberInputGuide() {

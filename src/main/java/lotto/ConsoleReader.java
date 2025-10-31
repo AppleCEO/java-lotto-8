@@ -12,7 +12,7 @@ public class ConsoleReader {
         ConsoleOutput.printMoneyInputGuide();
         String input = Console.readLine();
         int money = Integer.parseInt(input);
-        ConsoleOutput.printLottoAmount(money);
+        ConsoleOutput.printLottoAmount(money/1000);
         return money;
     }
 
