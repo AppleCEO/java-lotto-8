@@ -1,15 +1,30 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ConsoleOutput {
     public static void printMoneyInputGuide() {
         System.out.println(Message.PROMPT_BUY_MONEY.get());
     }
 
-    public static void printLottoAmount(int money) {
-        System.out.printf(Message.RESULT_BUY_LOTTO_AMOUNT.get(), money/1000);
+    public static void printLottoAmount(int amount) {
+        System.out.printf(Message.RESULT_BUY_LOTTO_AMOUNT.get(), amount);
     }
 
     public static void printWinningNumberInputGuide() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(Message.PROMPT_WINNING_NUMBERS.get());
+    }
+
+    public static void printBonusNumberInputGuide() {
+        System.out.println(Message.PROMPT_BONUS_NUMBERS.get());
+    }
+
+    public static void printNumbers(List<Integer> lottoNumbers) {
+        List<String> numberStrings = lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+        String result = String.join(", ", numberStrings);
+        System.out.println("[" + result + "]");
     }
 }
