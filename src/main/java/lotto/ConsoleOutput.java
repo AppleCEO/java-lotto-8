@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ConsoleOutput {
     public static void printMoneyInputGuide() {
         System.out.println(Message.PROMPT_BUY_MONEY.get());
@@ -15,5 +18,13 @@ public class ConsoleOutput {
 
     public static void printBonusNumberInputGuide() {
         System.out.println(Message.PROMPT_BONUS_NUMBERS.get());
+    }
+
+    public static void printNumbers(List<Integer> lottoNumbers) {
+        List<String> numberStrings = lottoNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList());
+        String result = String.join(", ", numberStrings);
+        System.out.println("[" + result + "]");
     }
 }
