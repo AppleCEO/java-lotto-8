@@ -7,5 +7,6 @@ public class Application {
         int money = ConsoleReader.readMoney();
         List<Lotto> lottos = LottoFactory.createLottos(money);
         List<Integer> winningNumbers = ConsoleReader.readWinningNumbers();
+        int bonusNumber = ConsoleReader.readBonusNumber();
     }
 }
