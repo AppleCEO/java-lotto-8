@@ -27,4 +27,8 @@ public class ConsoleOutput {
         String result = String.join(", ", numberStrings);
         System.out.println("[" + result + "]");
     }
+
+    public static void printResult() {
+        System.out.println(Message.RESULT_TITLE.get());
+    }
 }
