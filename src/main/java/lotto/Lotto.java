@@ -21,6 +21,9 @@ public class Lotto {
     }
 
     public Ranking checkRanking(List<Integer> winningNumbers, int bonusNumber) {
-        return Ranking.FIRST;
+        int matchCount = (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+        return Ranking.valueOf(matchCount, numbers.contains(bonusNumber));
     }
 }
