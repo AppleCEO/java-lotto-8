@@ -19,5 +19,7 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Ranking checkRanking(List<Integer> winningNumbers, int bonusNumber) {
+        return Ranking.NONE;
+    }
 }
