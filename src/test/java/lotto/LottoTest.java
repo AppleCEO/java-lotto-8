@@ -22,6 +22,13 @@ class LottoTest {
         assertThat(ranking).isEqualTo(Ranking.FIRST);
     }
 
+    @Test
+    void 당첨_번호와_보너스_번호로_등수를_반환한다_2등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        assertThat(ranking).isEqualTo(Ranking.SECOND);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
