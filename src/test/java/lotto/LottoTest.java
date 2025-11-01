@@ -16,7 +16,7 @@ class LottoTest {
     }
 
     @Test
-    void 당첨_번호와_보너스_번호로_등수를_반환한다() {
+    void 당첨_번호와_보너스_번호로_등수를_반환한다_1등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
         assertThat(ranking).isEqualTo(Ranking.FIRST);
