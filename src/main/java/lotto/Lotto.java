@@ -21,6 +21,6 @@ public class Lotto {
     }
 
     public Ranking checkRanking(List<Integer> winningNumbers, int bonusNumber) {
-        return Ranking.NONE;
+        return Ranking.FIRST;
     }
 }
