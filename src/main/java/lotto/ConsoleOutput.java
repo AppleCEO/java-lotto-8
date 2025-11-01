@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ConsoleOutput {
@@ -28,7 +29,12 @@ public class ConsoleOutput {
         System.out.println("[" + result + "]");
     }
 
-    public static void printResult() {
+    public static void printResult(Map<Ranking, Long> result) {
         System.out.println(Message.RESULT_TITLE.get());
+        System.out.printf(Message.RESULT_RANKING_FIFTH_AMOUNT.get(), result.getOrDefault(Ranking.FIFTH, 0L));
+        System.out.printf(Message.RESULT_RANKING_FOURTH_AMOUNT.get(), result.getOrDefault(Ranking.FOURTH, 0L));
+        System.out.printf(Message.RESULT_RANKING_THIRD_AMOUNT.get(), result.getOrDefault(Ranking.THIRD, 0L));
+        System.out.printf(Message.RESULT_RANKING_SECOND_AMOUNT.get(), result.getOrDefault(Ranking.SECOND, 0L));
+        System.out.printf(Message.RESULT_RANKING_FIRST_AMOUNT.get(), result.getOrDefault(Ranking.FIRST, 0L));
     }
 }
