@@ -9,6 +9,9 @@ public class Application {
         List<Lotto> lottos = LottoFactory.createLottos(money);
         List<Integer> winningNumbers = ConsoleReader.readWinningNumbers();
         int bonusNumber = ConsoleReader.readBonusNumber();
+        List<Ranking> rankings = lottos.stream()
+                .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
+                .toList();
         ConsoleOutput.printResult();
     }
 }
