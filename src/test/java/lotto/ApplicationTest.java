@@ -37,6 +37,12 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 당첨_통계_출력() {
+        run("8000", "1,2,3,4,5,6", "7");
+        assertThat(output()).contains("당첨 통계\n---");
+    }
+
+    @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
