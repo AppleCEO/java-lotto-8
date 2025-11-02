@@ -16,8 +16,11 @@ public class Application {
     }
 
     private static void readFromConsole() {
+        ConsoleOutput.printMoneyInputGuide();
         money = ConsoleReader.readMoney();
+        ConsoleOutput.printWinningNumberInputGuide();
         winningNumbers = ConsoleReader.readWinningNumbers();
+        ConsoleOutput.printBonusNumberInputGuide();
         bonusNumber = ConsoleReader.readBonusNumber();
     }
 

@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class ConsoleReader {
     public static int readMoney() {
-        ConsoleOutput.printMoneyInputGuide();
         while (true) {
             String input = Console.readLine();
             try {
@@ -30,7 +29,6 @@ public class ConsoleReader {
     }
 
     public static List<Integer> readWinningNumbers() {
-        ConsoleOutput.printWinningNumberInputGuide();
         String input = Console.readLine();
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
@@ -38,7 +36,6 @@ public class ConsoleReader {
     }
 
     public static Integer readBonusNumber() {
-        ConsoleOutput.printBonusNumberInputGuide();
         String input = Console.readLine();
         return Integer.parseInt(input);
     }
