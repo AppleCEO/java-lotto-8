@@ -18,10 +18,9 @@ public class ConsoleReader {
     public static List<Integer> readWinningNumbers() {
         ConsoleOutput.printWinningNumberInputGuide();
         String input = Console.readLine();
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        return numbers;
     }
 
     public static Integer readBonusNumber() {
