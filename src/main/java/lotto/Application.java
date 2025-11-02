@@ -25,6 +25,6 @@ public class Application {
         Map<Ranking, Long> result = lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.counting()));
-        ConsoleOutput.printResult(result);
+        ConsoleOutput.printResult(result, 62.5);
     }
 }
