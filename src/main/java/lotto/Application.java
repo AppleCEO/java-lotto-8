@@ -26,8 +26,8 @@ public class Application {
         Map<Ranking, Long> result = lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(
-                        ranking -> ranking,         // Map의 Key: Ranking enum 상수 (FIFTH, FOURTH 등)
-                        Collectors.counting()       // Map의 Value: 해당 Ranking 상수의 개수 (Long)
+                        ranking -> ranking,
+                        Collectors.counting()
                 ));
         ConsoleOutput.printResult(result);
     }
