@@ -25,6 +25,10 @@ public class Application {
         Map<Ranking, Long> result = lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.counting()));
-        ConsoleOutput.printResult(result, 62.5);
+        long totalPrizeMoney = result.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+        double profitRatio = (double) totalPrizeMoney / money;
+        ConsoleOutput.printResult(result, profitRatio * 100);
     }
 }
