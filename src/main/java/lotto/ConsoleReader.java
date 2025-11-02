@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -13,11 +14,18 @@ public class ConsoleReader {
         while (true) {
             String input = Console.readLine();
             try {
-                int money = Integer.parseInt(input);
-                return money;
-            } catch (NumberFormatException e) {
+                return parseMoney(input);
+            } catch (IllegalArgumentException e) {
                 System.out.println(Message.ERROR_INVALID_MONEY.get());
             }
+        }
+    }
+
+    private static int parseMoney(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
         }
     }
 
