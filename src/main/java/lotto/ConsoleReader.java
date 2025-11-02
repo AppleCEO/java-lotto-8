@@ -10,9 +10,15 @@ import java.util.stream.Collectors;
 public class ConsoleReader {
     public static int readMoney() {
         ConsoleOutput.printMoneyInputGuide();
-        String input = Console.readLine();
-        int money = Integer.parseInt(input);
-        return money;
+        while (true) {
+            String input = Console.readLine();
+            try {
+                int money = Integer.parseInt(input);
+                return money;
+            } catch (NumberFormatException e) {
+                System.out.println(Message.ERROR_INVALID_MONEY.get());
+            }
+        }
     }
 
     public static List<Integer> readWinningNumbers() {
