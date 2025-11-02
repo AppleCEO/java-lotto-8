@@ -6,13 +6,12 @@ import java.util.stream.Collectors;
 
 public class Application {
     private static int money;
-    private static List<Lotto> lottos;
     private static List<Integer> winningNumbers;
     private static int bonusNumber;
 
     public static void main(String[] args) {
         readFromConsole();
-        lottos = LottoFactory.createLottos(money);
+        List<Lotto> lottos = LottoFactory.createLottos(money);
         printResult(lottos);
     }
 
