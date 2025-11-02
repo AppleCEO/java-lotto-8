@@ -22,13 +22,22 @@ public class Application {
     }
 
     private static void printResult(List<Lotto> lottos) {
+        Map<Ranking, Long> result = getRanking(lottos);
+        double profitRatio = getProfitRatio(result);
+        ConsoleOutput.printResult(result, profitRatio * 100);
+    }
+
+    private static Map<Ranking, Long> getRanking(List<Lotto> lottos) {
         Map<Ranking, Long> result = lottos.stream()
                 .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.counting()));
+        return result;
+    }
+
+    private static double getProfitRatio(Map<Ranking, Long> result) {
         long totalPrizeMoney = result.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
-        double profitRatio = (double) totalPrizeMoney / money;
-        ConsoleOutput.printResult(result, profitRatio * 100);
+        return (double) totalPrizeMoney / money;
     }
 }
