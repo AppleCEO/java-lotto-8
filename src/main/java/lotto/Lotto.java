@@ -17,12 +17,21 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         validateNoDuplicates(numbers);
+        validateNumberRange(numbers);
     }
 
     private void validateNoDuplicates(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
+        }
+    }
+
+    public static void validateNumberRange(List<Integer> numbers) {
+        boolean isOutOfRange = numbers.stream()
+                .anyMatch(number -> number < 1 || number > 45);
+        if (isOutOfRange) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
