@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoFactoryTest {
     @Test
     void 로또_생성_테스트() {
-        List<Lotto> lottos = LottoFactory.createLottos(3);
+        List<Lotto> lottos = LottoFactory.createLottos(3000);
         assertThat(lottos.size()).isEqualTo(3);
     }
 }
