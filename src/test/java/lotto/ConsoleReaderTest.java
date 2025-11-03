@@ -58,6 +58,16 @@ class ConsoleReaderTest extends NsTest {
     }
 
     @Test
+    void 로또_당첨번호에_숫자가_아닌_문자_입력_시_에러_미시지_출력_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,a", "10,20,30,40,41,42", "7");
+            int money = ConsoleReader.readMoney();
+            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            assertThat(output()).contains(ErrorMessage.INVALID_CHARACTER.getMessage());
+        });
+    }
+
+    @Test
     void 보너스_번호_입력_테스트() {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,6", "7");
