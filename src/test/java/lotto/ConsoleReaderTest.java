@@ -41,7 +41,7 @@ class ConsoleReaderTest extends NsTest {
     }
 
     @Test
-    void 로또_당첨번호가_범위에_벗어난_숫자_예외_테스트() {
+    void 로또_당첨번호에_범위를_벗어난_숫자가_있을_시_에러_미시지_출력_테스트() {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,46", "7");
             int money = ConsoleReader.readMoney();
