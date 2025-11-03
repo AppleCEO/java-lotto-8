@@ -29,24 +29,26 @@ public class ConsoleReader {
         }
     }
 
-    public static List<Integer> readWinningNumbers() {
+    public static Lotto readWinningLotto() {
         while (true) {
             String input = Console.readLine();
             try {
-                List<Integer> winningNumbers = parseWinningNumbers(input);
-                return winningNumbers;
+                return parseWinningLotto(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static List<Integer> parseWinningNumbers(String input) {
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        Lotto lotto = new Lotto(winningNumbers);
-        return winningNumbers;
+    private static Lotto parseWinningLotto(String input) {
+        try {
+            List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            return new Lotto(winningNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER.getMessage());
+        }
     }
 
     public static Integer readBonusNumber() {

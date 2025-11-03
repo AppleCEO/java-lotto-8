@@ -18,8 +18,7 @@ public class ConsoleInputReader {
 
     private static Lotto readWinningLottoInput() {
         ConsoleOutput.printWinningNumberInputGuide();
-        List<Integer> winningNumbers = ConsoleReader.readWinningNumbers();
-        return new Lotto(winningNumbers);
+        return ConsoleReader.readWinningLotto();
     }
 
     private static int readBonusNumberInput() {
