@@ -5,42 +5,29 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Application {
-    private static int money;
-    private static List<Integer> winningNumbers;
-    private static int bonusNumber;
-
     public static void main(String[] args) {
-        readFromConsole();
-        List<Lotto> lottos = LottoFactory.createLottos(money);
-        printResult(lottos);
+        LottoInput lottoInput = ConsoleInputReader.readAllInputs();
+        List<Lotto> lottos = LottoFactory.createLottos(lottoInput.getMoney());
+        printResult(lottos, lottoInput);
     }
 
-    private static void readFromConsole() {
-        ConsoleOutput.printMoneyInputGuide();
-        money = ConsoleReader.readMoney();
-        ConsoleOutput.printWinningNumberInputGuide();
-        winningNumbers = ConsoleReader.readWinningNumbers();
-        ConsoleOutput.printBonusNumberInputGuide();
-        bonusNumber = ConsoleReader.readBonusNumber();
-    }
-
-    private static void printResult(List<Lotto> lottos) {
-        Map<Ranking, Long> result = getRanking(lottos);
-        double profitRatio = getProfitRatio(result);
+    private static void printResult(List<Lotto> lottos, LottoInput lottoInput) {
+        Map<Ranking, Long> result = getRanking(lottos, lottoInput);
+        double profitRatio = getProfitRatio(result, lottoInput);
         ConsoleOutput.printResult(result, profitRatio * 100);
     }
 
-    private static Map<Ranking, Long> getRanking(List<Lotto> lottos) {
+    private static Map<Ranking, Long> getRanking(List<Lotto> lottos, LottoInput lottoInput) {
         Map<Ranking, Long> result = lottos.stream()
-                .map(lotto -> lotto.checkRanking(winningNumbers, bonusNumber))
+                .map(lotto -> lotto.checkRanking(lottoInput.getWinningNumbers(), lottoInput.getMoney()))
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.counting()));
         return result;
     }
 
-    private static double getProfitRatio(Map<Ranking, Long> result) {
+    private static double getProfitRatio(Map<Ranking, Long> result, LottoInput lottoInput) {
         long totalPrizeMoney = result.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .sum();
-        return (double) totalPrizeMoney / money;
+        return (double) totalPrizeMoney / lottoInput.getMoney();
     }
 }

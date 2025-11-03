@@ -16,4 +16,12 @@ public class LottoInput {
     public int getMoney() {
         return money;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }
