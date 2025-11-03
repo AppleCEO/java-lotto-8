@@ -20,7 +20,7 @@ public class ConsoleReader {
     private static int parseMoney(String input) {
         try {
             int money = Integer.parseInt(input);
-            if (money % 1000 == 0) {
+            if (money % LottoConfig.LOTTO_PRICE.getValue() == 0) {
                 return money;
             }
             throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_1000.getMessage());
@@ -29,28 +29,53 @@ public class ConsoleReader {
         }
     }
 
-    public static List<Integer> readWinningNumbers() {
+    public static Lotto readWinningLotto() {
         while (true) {
             String input = Console.readLine();
             try {
-                List<Integer> winningNumbers = parseWinningNumbers(input);
-                return winningNumbers;
+                return parseWinningLotto(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static List<Integer> parseWinningNumbers(String input) {
-        List<Integer> winningNumbers = Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        Lotto lotto = new Lotto(winningNumbers);
-        return winningNumbers;
+    private static Lotto parseWinningLotto(String input) {
+        try {
+            List<Integer> winningNumbers = Arrays.stream(input.split(","))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            return new Lotto(winningNumbers);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER.getMessage());
+        }
     }
 
     public static Integer readBonusNumber() {
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        while (true) {
+            String input = Console.readLine();
+            try {
+                int bonusNumber = parseBonusNumber(input);
+                checkRange(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void checkRange(int number) {
+        if  (LottoConfig.MIN_NUMBER.getValue() < 1  || LottoConfig.MAX_NUMBER.getValue() < number) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            String errorMessage = String.format(ErrorMessage.INVALID_BONUS_NUMBER.getMessage(), input);
+            throw new IllegalArgumentException(errorMessage);
+        }
     }
 }
