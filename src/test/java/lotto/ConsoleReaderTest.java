@@ -79,6 +79,17 @@ class ConsoleReaderTest extends NsTest {
         });
     }
 
+    @Test
+    void 보너스_번호에_범외를_벗어난_숫자_입력_시_에러_메시지_출력_테스트() {
+        assertSimpleTest(() -> {
+            run("8000", "1,2,3,4,5,6", "46");
+            int money = ConsoleReader.readMoney();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
+            int bonusNumber = ConsoleReader.readBonusNumber();
+            assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+        });
+    }
+
     @Override
     public void runMain() {
     }
