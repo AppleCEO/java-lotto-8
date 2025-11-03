@@ -25,8 +25,9 @@ class ConsoleReaderTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,6", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
-            assertThat(lottoWinningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
+            int matchingNumbers = winningLotto.countMatchingNumbers(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+            assertThat(matchingNumbers).isEqualTo(6);
         });
     }
 
@@ -35,7 +36,7 @@ class ConsoleReaderTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,5", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
             assertThat(output()).contains(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         });
     }
@@ -45,14 +46,14 @@ class ConsoleReaderTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,46", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
             assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         });
 
         assertSimpleTest(() -> {
             run("8000", "0,2,3,4,5,6", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
             assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         });
     }
@@ -62,7 +63,7 @@ class ConsoleReaderTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,a", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
             assertThat(output()).contains(ErrorMessage.INVALID_CHARACTER.getMessage());
         });
     }
@@ -72,7 +73,7 @@ class ConsoleReaderTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,6", "7");
             int money = ConsoleReader.readMoney();
-            List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
+            Lotto winningLotto = ConsoleReader.readWinningLotto();
             int bonusNumber = ConsoleReader.readBonusNumber();
             assertThat(bonusNumber).isEqualTo(7);
         });
