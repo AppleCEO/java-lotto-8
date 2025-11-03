@@ -74,7 +74,8 @@ public class ConsoleReader {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER.getMessage());
+            String errorMessage = String.format(ErrorMessage.INVALID_BONUS_NUMBER.getMessage(), input);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 }

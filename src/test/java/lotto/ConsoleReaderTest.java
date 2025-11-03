@@ -97,7 +97,8 @@ class ConsoleReaderTest extends NsTest {
             int money = ConsoleReader.readMoney();
             Lotto winningLotto = ConsoleReader.readWinningLotto();
             int bonusNumber = ConsoleReader.readBonusNumber();
-            assertThat(output()).contains(ErrorMessage.INVALID_BONUS_NUMBER.getMessage(), "a");
+            String errorMessage = String.format(ErrorMessage.INVALID_BONUS_NUMBER.getMessage(), "a");
+            assertThat(output()).contains(errorMessage);
         });
     }
 
