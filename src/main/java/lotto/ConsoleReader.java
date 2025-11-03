@@ -2,29 +2,54 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ConsoleReader {
     public static int readMoney() {
-        ConsoleOutput.printMoneyInputGuide();
-        String input = Console.readLine();
-        int money = Integer.parseInt(input);
-        return money;
+        while (true) {
+            String input = Console.readLine();
+            try {
+                return parseMoney(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int parseMoney(String input) {
+        try {
+            int money = Integer.parseInt(input);
+            if (money % 1000 == 0) {
+                return money;
+            }
+            throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_1000.getMessage());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
+        }
     }
 
     public static List<Integer> readWinningNumbers() {
-        ConsoleOutput.printWinningNumberInputGuide();
-        String input = Console.readLine();
-        return Arrays.stream(input.split(","))
+        while (true) {
+            String input = Console.readLine();
+            try {
+                List<Integer> winningNumbers = parseWinningNumbers(input);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static List<Integer> parseWinningNumbers(String input) {
+        List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+        Lotto lotto = new Lotto(winningNumbers);
+        return winningNumbers;
     }
 
     public static Integer readBonusNumber() {
-        ConsoleOutput.printBonusNumberInputGuide();
         String input = Console.readLine();
         return Integer.parseInt(input);
     }
