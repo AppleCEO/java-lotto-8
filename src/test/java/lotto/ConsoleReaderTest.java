@@ -31,7 +31,7 @@ class ConsoleReaderTest extends NsTest {
     }
 
     @Test
-    void 로또_당첨번호_중복된_숫자_예외_테스트() {
+    void 로또_당첨번호에_중복된_숫자가_있는_경우_에러_메시지_출력_테스트() {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,5", "7");
             int money = ConsoleReader.readMoney();
