@@ -15,7 +15,7 @@ public class ConsoleReader {
             try {
                 return parseMoney(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(Message.ERROR_INVALID_MONEY.get());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -26,9 +26,9 @@ public class ConsoleReader {
             if (money % 1000 == 0) {
                 return money;
             }
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.ERROR_NOT_MULTIPLE_OF_1000.get());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(Message.ERROR_INVALID_MONEY.get());
         }
     }
 
