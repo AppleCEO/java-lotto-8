@@ -22,7 +22,11 @@ public class ConsoleReader {
 
     private static int parseMoney(String input) {
         try {
-            return Integer.parseInt(input);
+            int money = Integer.parseInt(input);
+            if (money % 1000 == 0) {
+                return money;
+            }
+            throw new IllegalArgumentException();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
