@@ -11,9 +11,7 @@ public enum Message {
     RESULT_RANKING_THIRD_AMOUNT("5개 일치 (1,500,000원) - %d개\n"),
     RESULT_RANKING_SECOND_AMOUNT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
     RESULT_RANKING_FIRST_AMOUNT("6개 일치 (2,000,000,000원) - %d개\n"),
-    RESULT_PROFIT_RATIO("총 수익률은 %.1f%%입니다.\n"),
-    ERROR_NOT_MULTIPLE_OF_1000("[ERROR] 금액은 천원 단위로 입력해주세요."),
-    ERROR_INVALID_MONEY("[ERROR] 금액은 숫자만 입력해주세요.");
+    RESULT_PROFIT_RATIO("총 수익률은 %.1f%%입니다.\n");
     private final String message;
 
     Message(String message) {

@@ -26,9 +26,9 @@ public class ConsoleReader {
             if (money % 1000 == 0) {
                 return money;
             }
-            throw new IllegalArgumentException(Message.ERROR_NOT_MULTIPLE_OF_1000.get());
+            throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_1000.getMessage());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Message.ERROR_INVALID_MONEY.get());
+            throw new IllegalArgumentException(ErrorMessage.INVALID_MONEY.getMessage());
         }
     }
 
