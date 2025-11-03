@@ -34,7 +34,6 @@ public class ConsoleReader {
             String input = Console.readLine();
             try {
                 List<Integer> winningNumbers = parseWinningNumbers(input);
-                validateNoDuplicates(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -46,19 +45,12 @@ public class ConsoleReader {
         List<Integer> winningNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        validateNoDuplicates(winningNumbers);
+        Lotto lotto = new Lotto(winningNumbers);
         return winningNumbers;
     }
 
     public static Integer readBonusNumber() {
         String input = Console.readLine();
         return Integer.parseInt(input);
-    }
-
-    private static void validateNoDuplicates(List<Integer> numbers) {
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
-        }
     }
 }

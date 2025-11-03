@@ -33,24 +33,24 @@ class ConsoleReaderTest extends NsTest {
     @Test
     void 로또_당첨번호에_중복된_숫자가_있는_경우_에러_메시지_출력_테스트() {
         assertSimpleTest(() -> {
-            run("8000", "1,2,3,4,5,5", "7");
+            run("8000", "1,2,3,4,5,5", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
             List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
-            assertThat(output()).contains(ErrorMessage.DUPLICATE_WINNING_NUMBERS.getMessage());
+            assertThat(output()).contains(ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         });
     }
 
     @Test
     void 로또_당첨번호에_범위를_벗어난_숫자가_있을_시_에러_미시지_출력_테스트() {
         assertSimpleTest(() -> {
-            run("8000", "1,2,3,4,5,46", "7");
+            run("8000", "1,2,3,4,5,46", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
             List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
             assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         });
 
         assertSimpleTest(() -> {
-            run("8000", "0,2,3,4,5,6", "7");
+            run("8000", "0,2,3,4,5,6", "10,20,30,40,41,42", "7");
             int money = ConsoleReader.readMoney();
             List<Integer> lottoWinningNumbers = ConsoleReader.readWinningNumbers();
             assertThat(output()).contains(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
