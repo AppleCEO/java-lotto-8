@@ -10,6 +10,4 @@ public class Application {
         List<Lotto> lottos = LottoFactory.createLottos(lottoInput.getMoney());
         LottoResultService.printResult(lottos, lottoInput);
     }
-
-
 }
