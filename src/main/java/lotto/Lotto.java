@@ -13,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConfig.LOTTO_NUMBERS_COUNT.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
         validateNoDuplicates(numbers);
@@ -29,7 +29,7 @@ public class Lotto {
 
     public static void validateNumberRange(List<Integer> numbers) {
         boolean isOutOfRange = numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < LottoConfig.MIN_NUMBER.getValue() || LottoConfig.MAX_NUMBER.getValue() < number);
         if (isOutOfRange) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }

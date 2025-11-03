@@ -20,7 +20,7 @@ public class ConsoleReader {
     private static int parseMoney(String input) {
         try {
             int money = Integer.parseInt(input);
-            if (money % 1000 == 0) {
+            if (money % LottoConfig.LOTTO_PRICE.getValue() == 0) {
                 return money;
             }
             throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLE_OF_1000.getMessage());
@@ -65,7 +65,7 @@ public class ConsoleReader {
     }
 
     private static void checkRange(int number) {
-        if  (number < 1  || 45 < number) {
+        if  (LottoConfig.MIN_NUMBER.getValue() < 1  || LottoConfig.MAX_NUMBER.getValue() < number) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
