@@ -13,7 +13,7 @@ public class LottoResultService {
 
     private static Map<Ranking, Long> getRanking(List<Lotto> lottos, LottoInput lottoInput) {
         Map<Ranking, Long> result = lottos.stream()
-                .map(lotto -> lotto.checkRanking(lottoInput.getWinningNumbers(), lottoInput.getMoney()))
+                .map(lotto -> lotto.checkRanking(lottoInput.getWinningLotto(), lottoInput.getMoney()))
                 .collect(Collectors.groupingBy(ranking -> ranking, Collectors.counting()));
         return result;
     }

@@ -18,42 +18,42 @@ class LottoTest {
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_1등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.FIRST);
     }
 
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_2등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.SECOND);
     }
 
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_3등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.THIRD);
     }
 
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_4등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 7));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.FOURTH);
     }
 
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_5등() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 9, 8, 10));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.FIFTH);
     }
 
     @Test
     void 당첨_번호와_보너스_번호로_등수를_반환한다_미당첨() {
         Lotto lotto = new Lotto(List.of(1, 2, 7, 9, 8, 10));
-        Ranking ranking = lotto.checkRanking(List.of(1,2,3,4,5,6), 7);
+        Ranking ranking = lotto.checkRanking(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7);
         assertThat(ranking).isEqualTo(Ranking.NONE);
     }
 

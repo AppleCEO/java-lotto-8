@@ -35,10 +35,17 @@ public class Lotto {
         }
     }
 
-    public Ranking checkRanking(List<Integer> winningNumbers, int bonusNumber) {
-        int matchCount = (int) numbers.stream()
-                .filter(winningNumbers::contains)
+    public Ranking checkRanking(Lotto winningLotto, int bonusNumber) {
+        return Ranking.valueOf(countMatchingNumbers(winningLotto), contains(bonusNumber));
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int countMatchingNumbers(Lotto otherLotto) {
+        return (int) this.numbers.stream() // 1. 현재 로또 번호 목록을 스트림으로 만듭니다.
+                .filter(otherLotto::contains) // 2. 각 번호가 otherLotto에 포함되는지 필터링합니다.
                 .count();
-        return Ranking.valueOf(matchCount, numbers.contains(bonusNumber));
     }
 }

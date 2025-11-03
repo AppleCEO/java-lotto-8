@@ -5,10 +5,10 @@ import java.util.List;
 public class ConsoleInputReader {
     public static LottoInput readAllInputs() {
         int money = readMoneyInput();
-        List<Integer> winningNumbers = readWinningNumbersInput();
+        Lotto winningLotto = readWinningLottoInput();
         int bonusNumber = readBonusNumberInput();
 
-        return new LottoInput(money, winningNumbers, bonusNumber);
+        return new LottoInput(money, winningLotto, bonusNumber);
     }
 
     private static int readMoneyInput() {
@@ -16,9 +16,10 @@ public class ConsoleInputReader {
         return ConsoleReader.readMoney();
     }
 
-    private static List<Integer> readWinningNumbersInput() {
+    private static Lotto readWinningLottoInput() {
         ConsoleOutput.printWinningNumberInputGuide();
-        return ConsoleReader.readWinningNumbers();
+        List<Integer> winningNumbers = ConsoleReader.readWinningNumbers();
+        return new Lotto(winningNumbers);
     }
 
     private static int readBonusNumberInput() {
