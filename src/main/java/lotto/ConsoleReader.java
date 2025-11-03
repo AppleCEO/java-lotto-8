@@ -52,7 +52,29 @@ public class ConsoleReader {
     }
 
     public static Integer readBonusNumber() {
-        String input = Console.readLine();
-        return Integer.parseInt(input);
+        while (true) {
+            String input = Console.readLine();
+            try {
+                int bonusNumber = parseBonusNumber(input);
+                checkRange(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void checkRange(int number) {
+        if  (number < 1  || 45 < number) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private static int parseBonusNumber(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CHARACTER.getMessage());
+        }
     }
 }
